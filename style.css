@@ -1,0 +1,160 @@
+/* ===========================
+   RESET E BASE
+   Remove espaçamentos padrão do navegador
+   e define a fonte geral da página
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #1a1008;
+  color: #e8d5a3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===========================
+   CABEÇALHO
+=========================== */
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #f0e0b0;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+/* ===========================
+   CONTEÚDO PRINCIPAL
+=========================== */
+main {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+}
+
+/* ===========================
+   CARD (bloco escuro com borda)
+=========================== */
+section {
+  background-color: #0f0a04;
+  border: 1px solid #3a2a10;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: #f0e0b0;
+}
+
+section > p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+/* ===========================
+   LABEL (etiqueta do campo)
+=========================== */
+label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+/* ===========================
+   INPUT (campo de texto)
+=========================== */
+input[type="number"] {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  background-color: #1a1008;
+  color: #e8d5a3;
+  border: 1px solid #4a3820;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  outline: none;
+}
+
+input[type="number"]:focus {
+  border-color: #8a6a30;
+}
+
+/* ===========================
+   BOTÃO CALCULAR
+=========================== */
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background-color: #2d5a27;
+  color: #e8d5a3;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #3d7a35;
+}
+
+/* ===========================
+   TABELA DE RESULTADOS
+=========================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+th {
+  background-color: #2d5a27;
+  color: #e8d5a3;
+  padding: 12px;
+  text-align: left;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #2a1f0f;
+  font-size: 0.9rem;
+}
+
+tr:nth-child(even) {
+  background-color: #150d04;
+}
+
+/* ===========================
+   RODAPÉ
+=========================== */
+footer {
+  margin-top: auto;
+  padding: 20px;
+  font-size: 0.8rem;
+  opacity: 0.5;
+}

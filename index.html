@@ -2,203 +2,27 @@
 <html lang="pt-BR">
 
 <head>
-  <!-- Informações sobre a página — não aparecem na tela -->
-  <meta charset="UTF-8" />                        <!-- aceita acentos e ç -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- funciona bem no celular também -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculador de Trastes — José Valderrama</title>
 
-  <style>
-    /* ===========================
-       RESET E BASE
-       Remove espaçamentos padrão do navegador
-       e define a fonte geral da página
-    =========================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box; /* tamanhos não somam padding por fora */
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #1a1008; /* marrom escuro quase preto */
-      color: #e8d5a3;            /* bege dourado — cor do texto principal */
-      min-height: 100vh;         /* ocupa pelo menos a altura toda da tela */
-      display: flex;
-      flex-direction: column;    /* empilha header, main, footer verticalmente */
-      align-items: center;       /* centraliza tudo horizontalmente */
-    }
-
-    /* ===========================
-       CABEÇALHO
-    =========================== */
-    header {
-      text-align: center;
-      padding: 40px 20px 20px;
-    }
-
-    header h1 {
-      font-size: 2.2rem;         /* rem = tamanho relativo à fonte base */
-      letter-spacing: 2px;       /* espaço entre letras */
-      color: #f0e0b0;            /* dourado mais claro para o título */
-    }
-
-    header p {
-      margin-top: 8px;
-      font-size: 0.95rem;
-      opacity: 0.7;              /* levemente transparente */
-    }
-
-    /* ===========================
-       CONTEÚDO PRINCIPAL
-    =========================== */
-    main {
-      width: 100%;
-      max-width: 700px;          /* limita largura máxima para não esticar demais */
-      padding: 20px;
-    }
-
-    /* ===========================
-       CARD DO FORMULÁRIO
-       O bloco escuro com borda que o professor mostrou
-    =========================== */
-    section {
-      background-color: #0f0a04; /* fundo ainda mais escuro para o card */
-      border: 1px solid #3a2a10; /* borda marrom discreta */
-      border-radius: 12px;       /* cantos arredondados */
-      padding: 32px;
-      margin-bottom: 24px;
-    }
-
-    section h2 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-      color: #f0e0b0;
-    }
-
-    section > p {
-      font-size: 0.9rem;
-      opacity: 0.7;
-      margin-bottom: 20px;
-    }
-
-    /* ===========================
-       LABEL (etiqueta do campo)
-    =========================== */
-    label {
-      display: block;            /* ocupa linha inteira, fica acima do input */
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-      opacity: 0.8;
-    }
-
-    /* ===========================
-       INPUT (campo de texto)
-    =========================== */
-    input[type="number"] {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 1.1rem;
-      background-color: #1a1008;
-      color: #e8d5a3;
-      border: 1px solid #4a3820;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      outline: none;             /* remove borda azul padrão do navegador */
-    }
-
-    input[type="number"]:focus {
-      border-color: #8a6a30;    /* borda dourada quando o campo está selecionado */
-    }
-
-    /* ===========================
-       BOTÃO CALCULAR
-    =========================== */
-    button {
-      width: 100%;
-      padding: 14px;
-      font-size: 1rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      background-color: #2d5a27; /* verde escuro como no slide do professor */
-      color: #e8d5a3;
-      border: none;              /* remove borda padrão */
-      border-radius: 8px;
-      cursor: pointer;           /* muda cursor para mãozinha ao passar */
-      transition: background-color 0.2s; /* animação suave ao passar o mouse */
-    }
-
-    button:hover {
-      background-color: #3d7a35; /* verde um pouco mais claro ao passar o mouse */
-    }
-
-    /* ===========================
-       TABELA DE RESULTADOS
-    =========================== */
-    table {
-      width: 100%;
-      border-collapse: collapse; /* remove espaço duplo entre bordas */
-      margin-top: 8px;
-    }
-
-    th {
-      background-color: #2d5a27;
-      color: #e8d5a3;
-      padding: 12px;
-      text-align: left;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-    }
-
-    td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #2a1f0f; /* linha divisória entre trastes */
-      font-size: 0.9rem;
-    }
-
-    /* linhas alternadas levemente mais claras para facilitar leitura */
-    tr:nth-child(even) {
-      background-color: #150d04;
-    }
-
-    /* ===========================
-       RODAPÉ
-    =========================== */
-    footer {
-      margin-top: auto;          /* empurra o rodapé para o final da tela */
-      padding: 20px;
-      font-size: 0.8rem;
-      opacity: 0.5;
-    }
-  </style>
+  <!-- Aqui linkamos o arquivo CSS externo -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- ============================
-       CABEÇALHO DA PÁGINA
-       ============================ -->
   <header>
     <h1>Calculador de Trastes</h1>
     <p>Calcule a posição exata dos trastes do seu instrumento</p>
   </header>
 
-  <!-- ============================
-       FORMULÁRIO DE ENTRADA
-       O usuário digita a escala aqui
-       ============================ -->
   <main>
     <section>
       <h2>Cálculo de Trastes</h2>
       <p>Informe a escala (mm). Ex.: 650</p>
 
-      <!-- label = etiqueta do campo. O "for" conecta ela ao input pelo id -->
       <label for="escala">Escala (em milímetros)</label>
-
-      <!-- input = campo de texto onde o usuário digita -->
-      <!-- type="number" = só aceita números -->
-      <!-- value="650"   = valor padrão já preenchido -->
-      <!-- min="1"       = não aceita zero ou negativo -->
       <input
         type="number"
         id="escala"
@@ -207,110 +31,21 @@
         min="1"
       />
 
-      <!-- button = botão clicável -->
-      <!-- onclick chama a função JavaScript que faremos depois -->
       <button onclick="calcular()">CALCULAR</button>
     </section>
 
-    <!-- ============================
-         ÁREA DE RESULTADO
-         Começa vazia — o JavaScript vai preencher depois
-         ============================ -->
     <section id="resultado">
-      <!-- Aqui vai aparecer a tabela com os trastes após clicar em calcular -->
+      <!-- Preenchido pelo JavaScript após clicar em CALCULAR -->
     </section>
   </main>
 
-  <!-- ============================
-       RODAPÉ
-       ============================ -->
   <footer>
     <p>José Valderrama — Lutheria Artesanal</p>
   </footer>
 
-  <script>
-    // ================================
-    // FUNÇÃO PRINCIPAL
-    // Chamada quando o usuário clica em CALCULAR
-    // ================================
-    async function calcular() {
-
-      // 1. Lê o valor digitado no input pelo id="escala"
-      const escala = document.getElementById("escala").value;
-
-      // 2. Valida: se estiver vazio ou for zero, avisa e para
-      if (!escala || escala <= 0) {
-        alert("Por favor, informe uma escala válida (ex: 650)");
-        return;
-      }
-
-      // 3. Monta a URL da API com o valor digitado
-      const url = `http://localhost:3000/trastes?escala=${escala}`;
-
-      // 4. Pega a div de resultado para mostrar mensagem de carregando
-      const resultado = document.getElementById("resultado");
-      resultado.innerHTML = "<p style='opacity:0.6; padding:8px'>Calculando...</p>";
-
-      // 5. Faz a requisição para a API Clojure
-      //    "fetch" = buscar dados de uma URL
-      //    "await" = espera a resposta antes de continuar
-      try {
-        const resposta = await fetch(url);
-
-        // 6. Converte a resposta de texto JSON para objeto JavaScript
-        const dados = await resposta.json();
-
-        // 7. Monta a tabela HTML com os dados recebidos
-        resultado.innerHTML = montarTabela(dados);
-
-      } catch (erro) {
-        // Se a API não estiver rodando, mostra mensagem de erro
-        resultado.innerHTML = `
-          <p style='color:#c0392b; padding:8px'>
-            Não foi possível conectar à API. <br/>
-            Verifique se o servidor está rodando com <strong>clj -M:run</strong>
-          </p>`;
-      }
-    }
-
-    // ================================
-    // FUNÇÃO AUXILIAR
-    // Recebe os dados da API e retorna o HTML da tabela
-    // ================================
-    function montarTabela(dados) {
-      // Começa o HTML da tabela com o cabeçalho
-      let html = `
-        <h2 style="margin-bottom: 16px">
-          Resultados — Escala: ${dados.escala} mm
-        </h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Traste</th>
-              <th>Dist. da Pestana (mm)</th>
-              <th>Dist. da Ponte (mm)</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
-
-      // Para cada traste no array, adiciona uma linha na tabela
-      // toFixed(2) = arredonda para 2 casas decimais
-      for (const t of dados.trastes) {
-        html += `
-          <tr>
-            <td>${t.traste}</td>
-            <td>${t["distancia-pestana"].toFixed(2)}</td>
-            <td>${t["distancia-ponte"].toFixed(2)}</td>
-          </tr>
-        `;
-      }
-
-      // Fecha a tabela
-      html += `</tbody></table>`;
-      return html;
-    }
-  </script>
+  <!-- Aqui linkamos o arquivo JavaScript externo -->
+  <!-- Fica no final do body para o HTML carregar antes do JS rodar -->
+  <script src="script.js"></script>
 
 </body>
 </html>
