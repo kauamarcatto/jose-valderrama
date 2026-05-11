@@ -1,8 +1,20 @@
-/* ===========================
-   RESET E BASE
-   Remove espaçamentos padrão do navegador
-   e define a fonte geral da página
-=========================== */
+:root {
+  --bg:          #080604;
+  --bg-section:  #2a1306;
+  --bg-card:     #140a02;
+  --bg-card-alt: #1e0f04;
+  --gold:         #c9a848;
+  --gold-light:   #e0c070;
+  --gold-dim:     rgba(201, 168, 72, 0.15);
+  --gold-border:  rgba(201, 168, 72, 0.25);
+  --green:        #2a5430;
+  --green-light:  #325e38;
+  --green-border: rgba(42, 84, 48, 0.5);
+  --cream:       #f0e4c8;
+  --cream-dim:   rgba(240, 228, 200, 0.55);
+  --white:       #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,151 +22,518 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #1a1008;
-  color: #e8d5a3;
+  font-family: 'Raleway', sans-serif;
+  background-color: var(--bg);
+  color: var(--cream);
   min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(8, 6, 4, 0.96);
+  border-bottom: 1px solid var(--gold-border);
+  backdrop-filter: blur(8px);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-svg {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.logo-svg.small {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-text {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  line-height: 1.15;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  color: var(--white);
 }
 
-/* ===========================
-   CABEÇALHO
-=========================== */
-header {
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+nav a {
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 1.8px;
+  color: var(--cream-dim);
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--cream);
+}
+
+nav a.nav-active {
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(
+    160deg,
+    #1a0c04 0%,
+    #0f0703 40%,
+    #080604 100%
+  );
+  border-bottom: 1px solid var(--gold-border);
+  padding: 100px 32px 80px;
   text-align: center;
-  padding: 40px 20px 20px;
 }
 
-header h1 {
-  font-size: 2.2rem;
-  letter-spacing: 2px;
-  color: #f0e0b0;
-}
-
-header p {
-  margin-top: 8px;
-  font-size: 0.95rem;
-  opacity: 0.7;
-}
-
-/* ===========================
-   CONTEÚDO PRINCIPAL
-=========================== */
-main {
-  width: 100%;
+.hero-content {
   max-width: 700px;
-  padding: 20px;
+  margin: 0 auto;
 }
 
-/* ===========================
-   CARD (bloco escuro com borda)
-=========================== */
-section {
-  background-color: #0f0a04;
-  border: 1px solid #3a2a10;
-  border-radius: 12px;
-  padding: 32px;
-  margin-bottom: 24px;
-}
-
-section h2 {
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-  color: #f0e0b0;
-}
-
-section > p {
-  font-size: 0.9rem;
-  opacity: 0.7;
+.overline {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
-/* ===========================
-   LABEL (etiqueta do campo)
-=========================== */
-label {
-  display: block;
-  font-size: 0.85rem;
-  margin-bottom: 8px;
-  opacity: 0.8;
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 24px;
 }
 
-/* ===========================
-   INPUT (campo de texto)
-=========================== */
-input[type="number"] {
-  width: 100%;
-  padding: 14px 16px;
-  font-size: 1.1rem;
-  background-color: #1a1008;
-  color: #e8d5a3;
-  border: 1px solid #4a3820;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  outline: none;
-}
-
-input[type="number"]:focus {
-  border-color: #8a6a30;
-}
-
-/* ===========================
-   BOTÃO CALCULAR
-=========================== */
-button {
-  width: 100%;
-  padding: 14px;
+.hero-sub {
   font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  background-color: #2d5a27;
-  color: #e8d5a3;
-  border: none;
-  border-radius: 8px;
+  color: var(--cream-dim);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 32px;
+}
+
+/* ── CALCULATOR CARD ── */
+.calculator-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-top: 3px solid var(--green);
+  border-radius: 4px;
+  padding: 48px;
+  margin-bottom: 40px;
+}
+
+.calculator-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.card-sub {
+  font-size: 0.88rem;
+  color: var(--cream-dim);
+  margin-bottom: 36px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--cream-dim);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.unit {
+  font-weight: 400;
+  opacity: 0.7;
+  text-transform: lowercase;
+  letter-spacing: 0;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
+  background-color: var(--bg-card-alt);
+  color: var(--cream);
+  border: 1px solid rgba(201, 168, 72, 0.2);
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a848' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-button:hover {
-  background-color: #3d7a35;
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--gold);
 }
 
-/* ===========================
-   TABELA DE RESULTADOS
-=========================== */
+.field small {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--cream-dim);
+  opacity: 0.7;
+}
+
+button#btn-calcular {
+  width: 100%;
+  padding: 16px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  background: radial-gradient(ellipse at center, #325e38 0%, #2a5430 55%, #1a3d20 100%);
+  color: var(--cream);
+  border: 1.5px solid #4a7a52;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+button#btn-calcular:hover {
+  background: radial-gradient(ellipse at center, #3d6e44 0%, #34623c 55%, #22502a 100%);
+  border-color: #5a8e62;
+}
+
+button#btn-calcular:active {
+  transform: scale(0.99);
+}
+
+/* ── RESULTADO ── */
+#resultado {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.resultado-header {
+  margin-bottom: 20px;
+}
+
+.resultado-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.resultado-header p {
+  font-size: 0.82rem;
+  color: var(--cream-dim);
+}
+
+.resultado-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 8px;
+}
+
+thead tr {
+  background-color: var(--bg-section);
 }
 
 th {
-  background-color: #2d5a27;
-  color: #e8d5a3;
-  padding: 12px;
+  padding: 14px 20px;
   text-align: left;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--gold-border);
 }
 
 td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #2a1f0f;
+  padding: 11px 20px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(42, 19, 6, 0.8);
+  color: var(--cream);
+}
+
+td:first-child {
+  font-weight: 600;
+  color: var(--cream-dim);
+}
+
+tr:nth-child(even) td {
+  background-color: rgba(20, 10, 2, 0.4);
+}
+
+tr.traste-oitava td {
+  background-color: var(--gold-dim) !important;
+  color: var(--gold-light) !important;
+  font-weight: 600;
+}
+
+tr.traste-oitava td:first-child::after {
+  content: ' ♪';
+  color: var(--gold);
+}
+
+.erro {
+  padding: 20px;
+  background-color: rgba(180, 40, 30, 0.12);
+  border: 1px solid rgba(180, 40, 30, 0.3);
+  border-radius: 4px;
+  color: #e07060;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.carregando {
+  padding: 20px;
+  color: var(--cream-dim);
   font-size: 0.9rem;
 }
 
-tr:nth-child(even) {
-  background-color: #150d04;
+/* ── DIAGRAM SECTION ── */
+.diagram-section {
+  padding: 0 32px 60px;
 }
 
-/* ===========================
-   RODAPÉ
-=========================== */
-footer {
-  margin-top: auto;
-  padding: 20px;
+.diagram-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.diagram-img {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--gold-border);
+  display: block;
+}
+
+/* ── INFO SECTION ── */
+.info-section {
+  background:
+    linear-gradient(135deg,
+      #0f0501 0%,
+      #2a1306 25%,
+      #3d1e0a 50%,
+      #2a1306 75%,
+      #0f0501 100%
+    );
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  padding: 80px 32px;
+}
+
+.info-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.info-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.info-text p {
+  font-size: 0.92rem;
+  color: var(--cream-dim);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.info-text strong {
+  color: var(--cream);
+}
+
+.formula-box {
+  background-color: rgba(8, 6, 4, 0.5);
+  border: 1px solid var(--gold-border);
+  border-radius: 4px;
+  padding: 36px;
+  text-align: center;
+}
+
+.formula-label {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.formula {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.formula sup {
   font-size: 0.8rem;
-  opacity: 0.5;
+}
+
+.formula-desc {
+  font-size: 0.8rem;
+  color: var(--cream-dim);
+  margin-bottom: 20px;
+}
+
+.formula-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--cream-dim);
+  background-color: rgba(46, 90, 40, 0.15);
+  border: 1px solid var(--green-border);
+  padding: 8px 16px;
+  border-radius: 50px;
+}
+
+.check-icon {
+  color: var(--green-light);
+  font-weight: 700;
+}
+
+/* ── FOOTER ── */
+footer {
+  background-color: var(--bg);
+  padding: 60px 32px 40px;
+  border-top: 1px solid var(--gold-border);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.footer-tagline {
+  font-size: 0.75rem;
+  color: var(--cream-dim);
+}
+
+.footer-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.footer-contact p,
+.footer-copy p {
+  font-size: 0.82rem;
+  color: var(--cream-dim);
+  line-height: 1.9;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 768px) {
+  nav { display: none; }
+
+  .hero h1 { font-size: 2.6rem; }
+  .hero { padding: 70px 24px 60px; }
+
+  main { padding: 40px 20px; }
+  .calculator-card { padding: 28px 24px; }
+
+  .form-grid { grid-template-columns: 1fr; }
+
+  .info-inner { grid-template-columns: 1fr; gap: 40px; }
+
+  .footer-inner { grid-template-columns: 1fr; gap: 36px; }
 }

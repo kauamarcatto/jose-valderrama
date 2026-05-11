@@ -5,46 +5,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculador de Trastes — José Valderrama</title>
-
-  <!-- Aqui linkamos o arquivo CSS externo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <header>
-    <h1>Calculador de Trastes</h1>
-    <p>Calcule a posição exata dos trastes do seu instrumento</p>
-  </header>
+  <section class="hero">
+    <div class="hero-content">
+      <p class="overline">LUTHERIA ARTESANAL DE ALTA PRECISÃO</p>
+      <h1>Calculador<br>de Trastes</h1>
+      <p class="hero-sub">
+        Calcule a posição exata de cada traste com base no comprimento de escala do seu instrumento.
+      </p>
+    </div>
+  </section>
 
   <main>
-    <section>
-      <h2>Cálculo de Trastes</h2>
-      <p>Informe a escala (mm). Ex.: 650</p>
 
-      <label for="escala">Escala (em milímetros)</label>
-      <input
-        type="number"
-        id="escala"
-        placeholder="Ex.: 650"
-        value="650"
-        min="1"
-      />
+    <div class="calculator-card">
+      <h2>Dados do Instrumento</h2>
+      <p class="card-sub">Informe as especificações abaixo para calcular as posições dos trastes.</p>
 
-      <button onclick="calcular()">CALCULAR</button>
-    </section>
+      <div class="form-grid">
+        <div class="field">
+          <label for="escala">Escala <span class="unit">(mm)</span></label>
+          <input type="number" id="escala" placeholder="Ex.: 650" value="650" min="1" />
+          <small>Distância da pestana até a ponte. Ex.: 650 mm (violão clássico)</small>
+        </div>
+        <div class="field">
+          <label for="num-trastes">Número de Trastes</label>
+          <select id="num-trastes">
+            <option value="19">19 trastes</option>
+            <option value="20">20 trastes</option>
+            <option value="21">21 trastes</option>
+            <option value="22">22 trastes</option>
+            <option value="24" selected>24 trastes</option>
+          </select>
+          <small>Número total de trastes do instrumento</small>
+        </div>
+      </div>
 
-    <section id="resultado">
-      <!-- Preenchido pelo JavaScript após clicar em CALCULAR -->
-    </section>
+      <button id="btn-calcular" onclick="calcular()">CALCULAR TRASTES</button>
+    </div>
+
+    <section id="resultado"></section>
+
   </main>
 
-  <footer>
-    <p>José Valderrama — Lutheria Artesanal</p>
-  </footer>
+  <section class="diagram-section">
+    <div class="diagram-inner">
+      <img src="diagrama-escala.svg" alt="Diagrama de posicionamento de trastes" class="diagram-img" />
+    </div>
+  </section>
 
-  <!-- Aqui linkamos o arquivo JavaScript externo -->
-  <!-- Fica no final do body para o HTML carregar antes do JS rodar -->
+  <section class="info-section">
+    <div class="info-inner">
+      <div class="info-text">
+        <h3>A Matemática do Traste</h3>
+        <p>
+          Em instrumentos de cordas trasteados, a posição dos trastes segue uma
+          <strong>progressão geométrica</strong> baseada na teoria da afinação temperada.
+          A cada traste, a escala vibrante é reduzida por um fator constante — a raiz 12ª de 2.
+        </p>
+        <p>
+          Isso garante que no <strong>12º traste</strong> a escala seja exatamente
+          <strong>metade</strong> da escala total, produzindo a oitava — o mesmo intervalo sonoro, uma oitava acima.
+        </p>
+      </div>
+      <div class="formula-box">
+        <p class="formula-label">FÓRMULA DE POSICIONAMENTO</p>
+        <div class="formula">
+          d(n) = L &minus; L &divide; 2<sup>n/12</sup>
+        </div>
+        <p class="formula-desc">
+          <em>L</em> = comprimento da escala &nbsp;·&nbsp; <em>n</em> = número do traste
+        </p>
+        <div class="formula-check">
+          <span class="check-icon">✓</span> Verificação: no 12º traste, d(12) = L / 2
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script src="script.js"></script>
 
 </body>

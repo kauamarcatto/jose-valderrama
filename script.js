@@ -1,79 +1,71 @@
-// ================================
-// FUNÇÃO PRINCIPAL
-// Chamada quando o usuário clica em CALCULAR
-// ================================
+const API_BASE = 'http://localhost:3000';
+
 async function calcular() {
+  const escala    = document.getElementById('escala').value;
+  const numTrastes = document.getElementById('num-trastes').value;
+  const resultado = document.getElementById('resultado');
 
-  // 1. Lê o valor digitado no input pelo id="escala"
-  const escala = document.getElementById("escala").value;
-
-  // 2. Valida: se estiver vazio ou for zero, avisa e para
   if (!escala || escala <= 0) {
-    alert("Por favor, informe uma escala válida (ex: 650)");
+    alert('Por favor, informe uma escala válida (ex: 650)');
     return;
   }
 
-  // 3. Monta a URL da API com o valor digitado
-  const url = `http://localhost:3000/trastes?escala=${escala}`;
+  resultado.innerHTML = '<p class="carregando">Calculando...</p>';
 
-  // 4. Pega a div de resultado para mostrar mensagem de carregando
-  const resultado = document.getElementById("resultado");
-  resultado.innerHTML = "<p style='opacity:0.6; padding:8px'>Calculando...</p>";
+  const url = `${API_BASE}/trastes?escala=${escala}&num-trastes=${numTrastes}`;
 
-  // 5. Faz a requisição para a API Clojure
-  //    "fetch" = buscar dados de uma URL
-  //    "await" = espera a resposta antes de continuar
   try {
     const resposta = await fetch(url);
-
-    // 6. Converte a resposta de texto JSON para objeto JavaScript
-    const dados = await resposta.json();
-
-    // 7. Monta a tabela HTML com os dados recebidos
+    const dados    = await resposta.json();
     resultado.innerHTML = montarTabela(dados);
-
-  } catch (erro) {
-    // Se a API não estiver rodando, mostra mensagem de erro
+  } catch {
     resultado.innerHTML = `
-      <p style='color:#c0392b; padding:8px'>
-        Não foi possível conectar à API. <br/>
+      <div class="erro">
+        Não foi possível conectar à API.<br/>
         Verifique se o servidor está rodando com <strong>clj -M:run</strong>
-      </p>`;
+      </div>`;
   }
 }
 
-// ================================
-// FUNÇÃO AUXILIAR
-// Recebe os dados da API e retorna o HTML da tabela
-// ================================
 function montarTabela(dados) {
   let html = `
-    <h2 style="margin-bottom: 16px">
-      Resultados — Escala: ${dados.escala} mm
-    </h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Traste</th>
-          <th>Dist. da Pestana (mm)</th>
-          <th>Dist. da Ponte (mm)</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div class="resultado-header">
+      <h2>Resultados</h2>
+      <p>Escala: <strong>${dados.escala} mm</strong> &nbsp;·&nbsp; ${dados['num-trastes']} trastes</p>
+    </div>
+    <div class="resultado-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Traste</th>
+            <th>Dist. da Pestana (mm)</th>
+            <th>Dist. da Ponte (mm)</th>
+            <th>Espaço entre Trastes (mm)</th>
+          </tr>
+        </thead>
+        <tbody>
   `;
 
-  // Para cada traste no array, adiciona uma linha na tabela
-  // toFixed(2) = arredonda para 2 casas decimais
+  let distanciaAnterior = 0;
+
   for (const t of dados.trastes) {
+    const distPestana = t['distancia-pestana'];
+    const distPonte   = t['distancia-ponte'];
+    const espaco      = distPestana - distanciaAnterior;
+    const isOitava    = t.traste === 12;
+
     html += `
-      <tr>
+      <tr class="${isOitava ? 'traste-oitava' : ''}">
         <td>${t.traste}</td>
-        <td>${t["distancia-pestana"].toFixed(2)}</td>
-        <td>${t["distancia-ponte"].toFixed(2)}</td>
+        <td>${distPestana.toFixed(2)}</td>
+        <td>${distPonte.toFixed(2)}</td>
+        <td>${espaco.toFixed(2)}</td>
       </tr>
     `;
+
+    distanciaAnterior = distPestana;
   }
 
-  html += `</tbody></table>`;
+  html += `</tbody></table></div>`;
   return html;
 }
